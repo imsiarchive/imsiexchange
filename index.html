@@ -732,104 +732,78 @@ h1::after {
     </div>
 
     <script>
-        // ===== VOLUME TOGGLE FUNCTIONALITY =====
-        // Only one volume expanded at a time
-        function toggleVolume(volumeId) {
-            const volumes = ['volume1', 'volume2', 'volume3'];
+    // ===== VOLUME TOGGLE FUNCTIONALITY =====
+    function toggleVolume(volumeId) {
+        const volumes = ['volume1', 'volume2', 'volume3'];
+        const isCollapsed = document.getElementById(volumeId).classList.contains('collapsed');
+        
+        // Collapse all volumes
+        volumes.forEach(id => {
+            const vol = document.getElementById(id);
+            const header = document.querySelector(`[onclick="toggleVolume('${id}')"]`);
+            const arrow = document.getElementById(`arrow-${id}`);
+            
+            if (vol) vol.classList.add('collapsed');
+            if (header) header.classList.add('collapsed');
+            if (arrow) arrow.style.transform = 'rotate(-90deg)';
+        });
+        
+        // Expand clicked volume if it was collapsed
+        if (isCollapsed) {
             const clickedVolume = document.getElementById(volumeId);
             const clickedHeader = document.querySelector(`[onclick="toggleVolume('${volumeId}')"]`);
             const clickedArrow = document.getElementById(`arrow-${volumeId}`);
             
-            // Check if clicked volume is currently collapsed
-            const isCollapsed = clickedVolume.classList.contains('collapsed');
-            
-            // First, collapse all volumes
-            volumes.forEach(id => {
-                const vol = document.getElementById(id);
-                const header = document.querySelector(`[onclick="toggleVolume('${id}')"]`);
-                const arrow = document.getElementById(`arrow-${id}`);
-                
-                if (vol) {
-                    vol.classList.add('collapsed');
-                }
-                if (header) {
-                    header.classList.add('collapsed');
-                }
-                if (arrow) {
-                    arrow.style.transform = 'rotate(-90deg)';
-                }
-            });
-            
-            // If the clicked volume was collapsed, expand it now
-            if (isCollapsed) {
-                clickedVolume.classList.remove('collapsed');
-                clickedHeader.classList.remove('collapsed');
-                clickedArrow.style.transform = 'rotate(0deg)';
-                
-                // Smooth scroll to this volume
-                clickedHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-            // If it was expanded, we leave it collapsed (since we just collapsed all)
+            clickedVolume.classList.remove('collapsed');
+            clickedHeader.classList.remove('collapsed');
+            clickedArrow.style.transform = 'rotate(0deg)';
+            clickedHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        
-        // ===== PDF VIEWER FUNCTION =====
-        function openPDF(pdfPath) {
-            // In a real implementation, you would use a PDF.js viewer or Google Drive viewer
-            // For Google Drive, you'd use: https://drive.google.com/viewerng/viewer?embedded=true&url=YOUR_PDF_URL
-            
-            // Example using Google Drive viewer (replace YOUR_PDF_URL with actual encoded URL)
-            // For this demo, we'll use a placeholder
-            const modal = document.getElementById('pdfModal');
-            const iframe = document.getElementById('pdfIframe');
-            
-            // IMPORTANT: Replace with your actual PDF hosting solution
-            // Option 1: If PDFs are in Google Drive
-            // const pdfUrl = encodeURIComponent('https://your-domain.com/' + pdfPath);
-            // iframe.src = `https://drive.google.com/viewerng/viewer?embedded=true&url=${pdfUrl}`;
-            
-            // Option 2: If PDFs are on your server (same domain)
-            iframe.src = pdfPath;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+    
+    // ===== PDF VIEWER FUNCTION =====
+    const modal = document.getElementById('pdfModal');
+    const iframe = document.getElementById('pdfIframe');
+    
+    function openPDF(pdfPath) {
+        iframe.src = pdfPath;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closePDF(event) {
+        if (event.target.classList.contains('pdf-modal') || event.target.classList.contains('close-modal')) {
+            modal.classList.remove('active');
+            iframe.src = 'about:blank';
+            document.body.style.overflow = '';
         }
-        
-        function closePDF(event) {
-            // Prevent closing when clicking inside the iframe container
-            if (event.target.classList.contains('pdf-modal') || event.target.classList.contains('close-modal')) {
-                const modal = document.getElementById('pdfModal');
-                const iframe = document.getElementById('pdfIframe');
-                
-                modal.classList.remove('active');
-                iframe.src = 'about:blank'; // Stop video/audio if any
-                document.body.style.overflow = ''; // Restore scrolling
-            }
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            iframe.src = 'about:blank';
+            document.body.style.overflow = '';
         }
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modal = document.getElementById('pdfModal');
-                if (modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                    document.getElementById('pdfIframe').src = 'about:blank';
-                    document.body.style.overflow = '';
-                }
+    });
+    
+    // Initialize: Volume 1 expanded, others collapsed
+    window.onload = () => {
+        const volumes = ['volume1', 'volume2', 'volume3'];
+        volumes.forEach((id, index) => {
+            const vol = document.getElementById(id);
+            const arrow = document.getElementById(`arrow-${id}`);
+            
+            if (index === 0) {
+                vol.classList.remove('collapsed');
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                vol.classList.add('collapsed');
+                arrow.style.transform = 'rotate(-90deg)';
             }
         });
-        
-        // Initialize: Volume 1 expanded, others collapsed
-        window.onload = function() {
-            // Ensure Volume 1 is expanded by default
-            document.getElementById('volume1').classList.remove('collapsed');
-            document.getElementById('arrow-volume1').style.transform = 'rotate(0deg)';
-            
-            // Ensure others are collapsed
-            document.getElementById('volume2').classList.add('collapsed');
-            document.getElementById('arrow-volume2').style.transform = 'rotate(-90deg)';
-            document.getElementById('volume3').classList.add('collapsed');
-            document.getElementById('arrow-volume3').style.transform = 'rotate(-90deg)';
-        };
-    </script>
+    };
+</script>
 </body>
 </html>
