@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2b1b0e">
     <title>IMSI Exchange Archive</title>
     <style>
         /* ===== ANCIENT PARCHMENT STYLES ===== */
@@ -512,6 +512,99 @@ h1::after {
         padding: 20px;
     }
 }
+/* ===== PDF LANGUAGE BUTTONS ===== */
+.pdf-options {
+    margin: 10px 15px 0 15px;
+    padding: 12px;
+    background: rgba(139, 111, 76, 0.1);
+    border-radius: 15px;
+    border: 1px dashed #b89b7a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.pdf-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: #5e4a33;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+.lang-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    width: 100%;
+}
+
+.lang-btn {
+    flex: 1;
+    background: #8b6f4c;
+    background-image: linear-gradient(145deg, #a5835e 0%, #6b4f32 100%);
+    color: #f2e5d2;
+    border: 2px solid #c9af8b;
+    padding: 8px 0;
+    border-radius: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 0 #3a2c1b;
+}
+
+.lang-btn:hover {
+    background: #a5835e;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 #3a2c1b;
+}
+
+.lang-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #3a2c1b;
+}
+
+/* iOS smooth scrolling fix for iFrames */
+.pdf-container {
+    -webkit-overflow-scrolling: touch; 
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .issue-grid { grid-template-columns: repeat(2, 1fr); }
+    .contribute-email { font-size: 2rem; word-break: break-all; padding: 12px 30px; }
+    h1 { font-size: 3.5rem; }
+}
+
+@media (max-width: 600px) {
+    /* Fix container padding squeezing content on small screens */
+    body { padding: 10px; }
+    .container { 
+        padding: 30px 15px; 
+        margin: 10px auto; 
+        border-radius: 15px 15px 25px 25px;
+    }
+    h1 { font-size: 2.2rem; letter-spacing: 2px; }
+    h1::before, h1::after { font-size: 1.5rem; margin: 0 5px; }
+    .volume-header { font-size: 1.2rem; padding: 12px 15px; }
+    .issue-grid { grid-template-columns: 1fr; gap: 25px; }
+    .contribute-email { font-size: 1.3rem; padding: 10px 15px; }
+    .intro-paragraph { font-size: 1.1rem; padding: 15px; margin: 10px auto 25px auto; }
+    
+    /* Make Modal close button easier to tap on phones */
+    .close-modal { 
+        top: 10px; 
+        right: 10px; 
+        width: 45px; 
+        height: 45px; 
+        font-size: 2.5rem; 
+    }
+    .pdf-container { width: 95%; height: 95%; border-width: 4px; }
+}
     </style>
 </head>
 <body>
@@ -536,7 +629,14 @@ h1::after {
                 </div>
                 <div class="issue-number">Issue #1</div>
                 <div class="issue-date">January - February 2026</div><br>
-                <button class="view-pdf-btn" onclick="openPDF('pdfs/vol1-issue1.pdf')">📄 View PDF</button>
+                <div class="pdf-options">
+                    <span class="pdf-label">📄 Read in:</span>
+                    <div class="lang-buttons">
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue1-ar.pdf')">AR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue1-fr.pdf')">FR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue1-en.pdf')">EN</button>
+                    </div>
+                </div>
             </div>
             <!-- Issue 2 -->
             <div class="issue-card">
@@ -545,7 +645,14 @@ h1::after {
                 </div>
                 <div class="issue-number">Issue #2</div>
                 <div class="issue-date">March - April 2026</div><br>
-                <button class="view-pdf-btn" onclick="openPDF('pdfs/vol1-issue2.pdf')">📄 View PDF</button>
+                <div class="pdf-options">
+                    <span class="pdf-label">📄 Read in:</span>
+                    <div class="lang-buttons">
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue2-ar.pdf')">AR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue2-fr.pdf')">FR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue2-en.pdf')">EN</button>
+                    </div>
+                </div>
             </div>
             <!-- Issue 3 -->
             <div class="issue-card">
@@ -554,7 +661,14 @@ h1::after {
                 </div>
                 <div class="issue-number">Issue #3</div>
                 <div class="issue-date">May - June 2026</div><br>
-                <button class="view-pdf-btn" onclick="openPDF('pdfs/vol1-issue3.pdf')">📄 View PDF</button>
+                <div class="pdf-options">
+                    <span class="pdf-label">📄 Read in:</span>
+                    <div class="lang-buttons">
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue3-ar.pdf')">AR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue3-fr.pdf')">FR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue3-en.pdf')">EN</button>
+                    </div>
+                </div>
             </div>
             <!-- Issue 4 -->
             <div class="issue-card">
@@ -563,7 +677,14 @@ h1::after {
                 </div>
                 <div class="issue-number">Issue #4</div>
                 <div class="issue-date">July - August 2026</div><br>
-                <button class="view-pdf-btn" onclick="openPDF('pdfs/vol1-issue4.pdf')">📄 View PDF</button>
+                <div class="pdf-options">
+                    <span class="pdf-label">📄 Read in:</span>
+                    <div class="lang-buttons">
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue4-ar.pdf')">AR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue4-fr.pdf')">FR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue4-en.pdf')">EN</button>
+                    </div>
+                </div>
             </div>
             <!-- Issue 5 -->
             <div class="issue-card">
@@ -572,7 +693,14 @@ h1::after {
                 </div>
                 <div class="issue-number">Issue #5</div>
                 <div class="issue-date">September - October 2026</div><br>
-                <button class="view-pdf-btn" onclick="openPDF('pdfs/vol1-issue5.pdf')">📄 View PDF</button>
+                <div class="pdf-options">
+                    <span class="pdf-label">📄 Read in:</span>
+                    <div class="lang-buttons">
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue5-ar.pdf')">AR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue5-fr.pdf')">FR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue5-en.pdf')">EN</button>
+                    </div>
+                </div>
             </div>
             <!-- Issue 6 -->
             <div class="issue-card">
@@ -581,7 +709,14 @@ h1::after {
                 </div>
                 <div class="issue-number">Issue #6</div>
                 <div class="issue-date">November - December 2026</div><br>
-                <button class="view-pdf-btn" onclick="openPDF('pdfs/vol1-issue6.pdf')">📄 View PDF</button>
+                <div class="pdf-options">
+                    <span class="pdf-label">📄 Read in:</span>
+                    <div class="lang-buttons">
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue6-ar.pdf')">AR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue6-fr.pdf')">FR</button>
+                        <button class="lang-btn" onclick="openPDF('pdfs/vol1-issue6-en.pdf')">EN</button>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -765,17 +900,8 @@ h1::after {
     const modal = document.getElementById('pdfModal');
     const iframe = document.getElementById('pdfIframe');
     
-    // Helper function to add cache-busting parameter
-    function addCacheBuster(url) {
-        const cacheBuster = `_cb=${Date.now()}`;
-        const separator = url.includes('?') ? '&' : '?';
-        return `${url}${separator}${cacheBuster}`;
-    }
-    
     function openPDF(pdfPath) {
-        // Clear browser cache by adding timestamp parameter
-        const freshUrl = addCacheBuster(pdfPath);
-        iframe.src = freshUrl;
+        iframe.src = pdfPath;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
@@ -797,17 +923,6 @@ h1::after {
         }
     });
     
-    // Optional: Force clear cache on page load
-    function clearBrowserCache() {
-        if ('caches' in window) {
-            caches.keys().then(names => {
-                names.forEach(name => {
-                    caches.delete(name);
-                });
-            });
-        }
-    }
-    
     // Initialize: Volume 1 expanded, others collapsed
     window.onload = () => {
         const volumes = ['volume1', 'volume2', 'volume3'];
@@ -823,9 +938,6 @@ h1::after {
                 arrow.style.transform = 'rotate(-90deg)';
             }
         });
-        
-        // Optional: Uncomment the line below to clear cache on page load
-        clearBrowserCache();
     };
 </script>
 </body>
