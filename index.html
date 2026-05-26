@@ -5,214 +5,130 @@
     <meta name="theme-color" content="#2b1b0e">
     <title>IMSI Exchange Archive</title>
     <style>
-        /* ===== ANCIENT PARCHMENT STYLES ===== */
+/* ===== MODERN ACADEMIC STYLES ===== */
+:root {
+    --bg-main: #f4f6f8;
+    --paper: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #5a6570;
+    --brand-navy: #003366;
+    --brand-blue: #0056b3;
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --radius-sm: 4px;
+    --radius-md: 8px;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=MedievalSharp&family=Roboto+Slab:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
 
 body {
-    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-    background: #2b1b0e; /* Deep aged wood background */
-    color: #3a2c1b;
+    font-family: 'Merriweather', 'Times New Roman', serif;
+    background: var(--bg-main);
+    color: var(--text-primary);
     line-height: 1.6;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.08"/></svg>');
-    background-repeat: repeat;
     padding: 20px;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .container {
-    max-width: 1300px;
-    margin: 40px auto;
-    padding: 50px 40px;
-    background: #e9dccd; /* Base parchment color */
-    background-image: 
-        linear-gradient(145deg, rgba(200, 170, 120, 0.15) 0%, rgba(240, 220, 180, 0.3) 100%),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2"/><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0.1 0.05 0 1 0"/></filter><rect width="200" height="200" filter="url(%23paper)" opacity="0.25"/></svg>');
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        0 0 0 2px #b89b7a,
-        0 0 0 6px #6b4f32,
-        0 0 0 8px #3a2c1b;
-    border-radius: 20px 20px 40px 40px;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-/* Burned edges effect */
-.container::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0,0,0,0.15) 0%, transparent 50%);
-    pointer-events: none;
-    border-radius: 30px;
-    z-index: -1;
-}
-
-/* Deckle edge effect (rough paper edge) */
-.container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px dashed #b89b7a;
-    border-radius: 18px 18px 38px 38px;
-    opacity: 0.3;
-    pointer-events: none;
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 50px 60px;
+    background: var(--paper);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
+    border-top: 5px solid var(--brand-navy);
 }
 
 /* ===== TYPOGRAPHY ===== */
 h1 {
-    font-family: 'MedievalSharp', 'Cormorant Garamond', cursive;
-    font-size: 5rem;
-    font-weight: 700;
-    letter-spacing: 6px;
-    color: #2c1e0f;
-    text-align: center;
-    margin-bottom: 0.25rem;
-    text-shadow: 
-        2px 2px 0px #b68b5c,
-        4px 4px 0px rgba(100, 60, 20, 0.2);
-    border-bottom: 3px double #8b6f4c;
-    padding-bottom: 20px;
-    position: relative;
-}
-
-h1::before, h1::after {
-    content: '☙';
+    font-family: 'Merriweather', serif;
     font-size: 3rem;
-    color: #8b6f4c;
-    margin: 0 20px;
-    opacity: 0.6;
-}
-
-h1::after {
-    content: '❧';
-}
-
-.intro-paragraph {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-style: italic;
-    color: #3a2c1b;
+    font-weight: 700;
+    color: var(--brand-navy);
     text-align: center;
-    max-width: 800px;
-    margin: 20px auto 40px auto;
-    padding: 25px 40px;
-    background: rgba(230, 210, 180, 0.6);
-    border-left: 4px solid #b89b7a;
-    border-right: 4px solid #b89b7a;
-    border-radius: 60px 20px 60px 20px;
-    box-shadow: inset 0 0 20px rgba(140, 100, 50, 0.2);
-    line-height: 1.8;
-    position: relative;
-}
-
-.intro-paragraph::before {
-    content: '“';
-    font-size: 5rem;
-    font-family: serif;
-    position: absolute;
-    left: 5px;
-    top: -20px;
-    color: #8b6f4c;
-    opacity: 0.3;
-}
-
-.intro-paragraph::after {
-    content: '”';
-    font-size: 5rem;
-    font-family: serif;
-    position: absolute;
-    right: 10px;
-    bottom: -40px;
-    color: #8b6f4c;
-    opacity: 0.3;
+    margin-bottom: 0.5rem;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-medium);
 }
 
 .subhead {
-    font-size: 1.4rem;
-    color: #5e4a33;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
     font-weight: 400;
     text-align: center;
-    margin-bottom: 3rem;
-    font-style: italic;
-    letter-spacing: 1px;
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.intro-paragraph {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    padding: 25px 30px;
+    background: #f8fafc;
+    border-left: 4px solid var(--brand-blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    line-height: 1.8;
 }
 
 /* ===== VOLUME HEADERS ===== */
 .volume-header {
-    background: #d8c5a8;
-    background-image: linear-gradient(145deg, #e5d5ba 0%, #cbb594 100%);
-    border-radius: 40px 40px 20px 20px;
-    padding: 20px 35px;
-    margin: 30px 0 25px 0;
-    font-size: 2.2rem;
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    border-radius: var(--radius-sm);
+    padding: 15px 25px;
+    margin: 30px 0 20px 0;
+    font-size: 1.25rem;
     font-weight: 600;
-    color: #2c1e0f;
+    color: var(--brand-navy);
     cursor: pointer;
-    box-shadow: 
-        0 8px 0 #6b4f32,
-        0 12px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.15s ease;
-    border: 2px solid #b89b7a;
-    font-family: 'MedievalSharp', 'Cormorant Garamond', cursive;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    border-left: 4px solid var(--brand-navy);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
+    transition: background-color 0.2s ease;
 }
 
 .volume-header:hover {
-    background: #e8d9c0;
-    transform: translateY(-4px);
-    box-shadow: 
-        0 12px 0 #6b4f32,
-        0 18px 30px rgba(0, 0, 0, 0.25);
-}
-
-.volume-header:active {
-    transform: translateY(4px);
-    box-shadow: 
-        0 4px 0 #6b4f32,
-        0 8px 15px rgba(0, 0, 0, 0.2);
+    background: #f8fafc;
 }
 
 .volume-header .arrow {
-    font-size: 2.5rem;
-    color: #3a2c1b;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
     transition: transform 0.3s ease;
-    filter: drop-shadow(2px 2px 0px #b68b5c);
 }
 
 .volume-header.collapsed {
-    background: #cbb594;
-    box-shadow: 0 4px 0 #5a3f28;
+    border-left-color: var(--text-secondary);
+    color: var(--text-secondary);
 }
 
 /* ===== ISSUE GRID ===== */
 .issue-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 25px;
     margin-bottom: 40px;
-    transition: opacity 0.3s ease, max-height 0.5s ease;
 }
 
 .issue-grid.collapsed {
@@ -220,179 +136,111 @@ h1::after {
 }
 
 .issue-card {
-    background: #f2e5d2;
-    background-image: linear-gradient(145deg, #faf0dd 0%, #e6d5bb 100%);
-    border-radius: 20px 20px 30px 30px;
+    background: var(--paper);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 
-        0 8px 0 #7b5f42,
-        0 12px 20px rgba(60, 40, 20, 0.25);
-    border: 2px solid #c9af8b;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
     text-align: center;
     padding-bottom: 20px;
-    transition: all 0.2s ease;
-    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .issue-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 
-        0 12px 0 #7b5f42,
-        0 18px 30px rgba(60, 40, 20, 0.35);
-    border-color: #b58f62;
-}
-
-/* Wax seal effect on cards */
-.issue-card::after {
-    content: '';
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    background: #b35e3a;
-    border-radius: 50%;
-    opacity: 0.15;
-    box-shadow: 0 0 0 2px #8b4a2c;
-    pointer-events: none;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-medium);
 }
 
 .cover-image {
     width: 100%;
     aspect-ratio: 1 / 1.3;
-    background: #b89b7a;
+    background: #e2e8f0;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #e9dccd;
+    color: var(--brand-navy);
     font-weight: 600;
-    font-size: 1.4rem;
-    border-bottom: 4px solid #8b6f4c;
-    background-image: linear-gradient(145deg, #a5835e 0%, #7b5f42 100%);
-    font-family: 'MedievalSharp', cursive;
-    text-shadow: 2px 2px 0 #3a2c1b;
-    position: relative;
-}
-
-/* Faux leather texture for covers without images */
-.cover-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="leather"><feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2"/></filter><rect width="100" height="100" filter="url(%23leather)" opacity="0.2"/></svg>');
-    opacity: 0.3;
-    pointer-events: none;
+    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .issue-number {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #2c1e0f;
-    margin: 15px 0 5px 0;
-    font-family: 'MedievalSharp', cursive;
-    letter-spacing: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--brand-navy);
+    margin: 20px 0 5px 0;
 }
 
 .issue-date {
-    font-size: 1.2rem;
-    color: #5e4a33;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
     margin-bottom: 15px;
-    font-weight: 400;
-    font-style: italic;
-    border-bottom: 1px dotted #b89b7a;
-    display: inline-block;
-    padding-bottom: 5px;
+    display: block;
 }
 
 .view-pdf-btn {
     display: inline-block;
-    background: #8b6f4c;
-    background-image: linear-gradient(145deg, #a5835e 0%, #6b4f32 100%);
-    color: #f2e5d2;
+    background: var(--paper);
+    color: var(--brand-blue);
     text-decoration: none;
-    padding: 12px 30px;
-    border-radius: 30px 10px 30px 10px;
-    font-weight: 600;
-    font-size: 1.1rem;
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1px solid var(--brand-blue);
+    font-family: 'Inter', sans-serif;
     transition: all 0.2s ease;
-    border: 2px solid #c9af8b;
-    cursor: pointer;
-    margin-top: 10px;
-    font-family: 'Cormorant Garamond', serif;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 0 #3a2c1b;
-    text-transform: uppercase;
 }
 
 .view-pdf-btn:hover {
-    background: #a5835e;
-    background-image: linear-gradient(145deg, #b89b7a 0%, #7b5f42 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 #3a2c1b;
-    border-color: #e5d5ba;
-    color: white;
+    background: var(--brand-blue);
+    color: var(--paper);
 }
 
-.view-pdf-btn:active {
-    transform: translateY(4px);
-    box-shadow: 0 2px 0 #3a2c1b;
-}
-
-/* ===== CONTRIBUTE SECTION (Ancient Scroll) ===== */
+/* ===== CONTRIBUTE SECTION ===== */
 .contribute-box {
-    background: #d8c5a8;
-    background-image: linear-gradient(145deg, #ecddc5 0%, #cfb999 100%);
-    border-radius: 40px 20px 40px 20px;
+    background: #f8fafc;
+    border-radius: var(--radius-md);
     padding: 40px;
-    margin: 60px 0 30px 0;
+    margin: 50px 0 20px 0;
     text-align: center;
-    border: 3px solid #b89b7a;
-    box-shadow: 
-        0 10px 0 #6b4f32,
-        inset 0 0 30px rgba(140, 100, 50, 0.3);
-    position: relative;
+    border: 1px solid var(--border-light);
 }
 
 .contribute-box h2 {
-    font-size: 2.5rem;
-    color: #2c1e0f;
-    margin-bottom: 15px;
-    font-weight: 700;
-    font-family: 'MedievalSharp', cursive;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 0px #b68b5c;
+    font-size: 1.8rem;
+    color: var(--brand-navy);
+    margin-bottom: 10px;
+    font-family: 'Merriweather', serif;
 }
 
 .contribute-email {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c1e0f;
-    background: #f2e5d2;
+    font-family: 'Inter', monospace;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--brand-blue);
+    background: var(--paper);
     display: inline-block;
-    padding: 15px 50px;
-    border-radius: 60px 10px 60px 10px;
-    margin: 20px 0 15px 0;
-    border: 3px solid #8b6f4c;
-    box-shadow: inset 0 0 20px #b89b7a;
-    font-family: 'Cormorant Garamond', serif;
-    letter-spacing: 1px;
+    padding: 12px 30px;
+    border-radius: var(--radius-sm);
+    margin: 20px 0;
+    border: 1px solid var(--border-medium);
 }
 
 .deadline {
-    font-size: 1.3rem;
-    color: #2c1e0f;
-    background: #e5d5ba;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #b91c1c; /* Subdued academic red for deadlines */
+    background: #fee2e2;
     display: inline-block;
-    padding: 10px 35px;
-    border-radius: 40px 5px 40px 5px;
-    margin-top: 15px;
-    border-left: 6px solid #b35e3a;
-    border-right: 6px solid #b35e3a;
-    font-weight: 600;
-    font-style: italic;
+    padding: 6px 16px;
+    border-radius: var(--radius-sm);
+    margin-top: 10px;
+    font-weight: 500;
 }
 
 /* ===== PDF MODAL ===== */
@@ -403,12 +251,12 @@ h1::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(20, 10, 5, 0.95);
+    background: rgba(15, 23, 42, 0.85); /* Slate dark */
     z-index: 1000;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(4px);
 }
 
 .pdf-modal.active {
@@ -416,196 +264,129 @@ h1::after {
 }
 
 .pdf-container {
-    width: 90%;
-    height: 90%;
-    background: #3a2c1b;
-    border-radius: 30px 10px 30px 10px;
+    width: 85%;
+    height: 85%;
+    background: var(--paper);
+    border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
-    border: 8px solid #8b6f4c;
-    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);
+    box-shadow: var(--shadow-lg);
 }
 
 .pdf-container iframe {
     width: 100%;
     height: 100%;
     border: none;
-    background: #e9dccd;
 }
 
 .close-modal {
     position: absolute;
-    top: 15px;
-    right: 25px;
-    color: #e9dccd;
-    font-size: 4rem;
+    top: -40px;
+    right: 0;
+    color: var(--paper);
+    font-size: 2.5rem;
     cursor: pointer;
     z-index: 1001;
-    background: #6b4f32;
-    width: 60px;
-    height: 60px;
-    border-radius: 50% 10% 50% 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    border: 3px solid #b89b7a;
-    font-family: 'MedievalSharp', cursive;
+    font-family: 'Inter', sans-serif;
     line-height: 1;
-    text-shadow: 2px 2px 0 #2c1e0f;
+    transition: color 0.2s;
 }
 
 .close-modal:hover {
-    background: #8b6f4c;
-    transform: rotate(5deg) scale(1.1);
-    border-color: #e5d5ba;
+    color: var(--border-medium);
 }
 
-/* ===== FOOTER ===== */
-.footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 25px;
-    border-top: 3px double #8b6f4c;
-    color: #5e4a33;
-    font-size: 1.1rem;
-    font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    .issue-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .contribute-email {
-        font-size: 2rem;
-        word-break: break-all;
-        padding: 12px 30px;
-    }
-    h1 {
-        font-size: 3.5rem;
-    }
-}
-
-@media (max-width: 600px) {
-    h1 { 
-        font-size: 2.8rem; 
-    }
-    h1::before, h1::after {
-        font-size: 2rem;
-        margin: 0 5px;
-    }
-    .volume-header { 
-        font-size: 1.6rem; 
-        padding: 15px 20px;
-    }
-    .issue-grid {
-        grid-template-columns: 1fr;
-    }
-    .contribute-email {
-        font-size: 1.6rem;
-        padding: 10px 20px;
-    }
-    .intro-paragraph {
-        font-size: 1.2rem;
-        padding: 20px;
-    }
-}
 /* ===== PDF LANGUAGE BUTTONS ===== */
 .pdf-options {
-    margin: 10px 15px 0 15px;
-    padding: 12px;
-    background: rgba(139, 111, 76, 0.1);
-    border-radius: 15px;
-    border: 1px dashed #b89b7a;
+    margin: 15px 20px 0 20px;
+    padding: 15px;
+    background: #f8fafc;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-light);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .pdf-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    color: #5e4a33;
-    font-size: 1.1rem;
-    font-style: italic;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .lang-buttons {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     justify-content: center;
     width: 100%;
 }
 
 .lang-btn {
     flex: 1;
-    background: #8b6f4c;
-    background-image: linear-gradient(145deg, #a5835e 0%, #6b4f32 100%);
-    color: #f2e5d2;
-    border: 2px solid #c9af8b;
+    background: var(--paper);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
     padding: 8px 0;
-    border-radius: 8px;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 3px 0 #3a2c1b;
 }
 
 .lang-btn:hover {
-    background: #a5835e;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 0 #3a2c1b;
+    background: var(--bg-main);
+    border-color: var(--text-secondary);
 }
 
 .lang-btn:active {
-    transform: translateY(2px);
-    box-shadow: 0 1px 0 #3a2c1b;
+    background: var(--border-light);
 }
 
-/* iOS smooth scrolling fix for iFrames */
-.pdf-container {
-    -webkit-overflow-scrolling: touch; 
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
     .issue-grid { grid-template-columns: repeat(2, 1fr); }
-    .contribute-email { font-size: 2rem; word-break: break-all; padding: 12px 30px; }
-    h1 { font-size: 3.5rem; }
+    .container { padding: 40px 30px; }
+    h1 { font-size: 2.5rem; }
+    .contribute-email { font-size: 1.2rem; word-break: break-all; }
 }
 
 @media (max-width: 600px) {
-    /* Fix container padding squeezing content on small screens */
     body { padding: 10px; }
     .container { 
-        padding: 30px 15px; 
-        margin: 10px auto; 
-        border-radius: 15px 15px 25px 25px;
+        padding: 25px 15px; 
+        margin: 0 auto; 
     }
-    h1 { font-size: 2.2rem; letter-spacing: 2px; }
-    h1::before, h1::after { font-size: 1.5rem; margin: 0 5px; }
-    .volume-header { font-size: 1.2rem; padding: 12px 15px; }
-    .issue-grid { grid-template-columns: 1fr; gap: 25px; }
-    .contribute-email { font-size: 1.3rem; padding: 10px 15px; }
-    .intro-paragraph { font-size: 1.1rem; padding: 15px; margin: 10px auto 25px auto; }
+    h1 { font-size: 1.8rem; }
+    .volume-header { font-size: 1.1rem; padding: 12px 15px; }
+    .issue-grid { grid-template-columns: 1fr; gap: 20px; }
+    .contribute-email { font-size: 1.1rem; padding: 10px; }
+    .intro-paragraph { font-size: 1rem; padding: 15px; }
     
-    /* Make Modal close button easier to tap on phones */
     .close-modal { 
-        top: 10px; 
-        right: 10px; 
-        width: 45px; 
-        height: 45px; 
-        font-size: 2.5rem; 
+        top: -35px; 
+        right: 0px; 
+        font-size: 2rem; 
     }
-    .pdf-container { width: 95%; height: 95%; border-width: 4px; }
+    .pdf-container { width: 95%; height: 90%; }
 }
-    </style>
+</style>
 </head>
 <body>
     <div class="container">
