@@ -1,411 +1,620 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="theme-color" content="#2b1b0e">
     <title>IMSI Exchange Archive</title>
     <style>
-/* ===== MODERN ACADEMIC STYLES ===== */
-:root {
-    --bg-main: #f4f6f8;
-    --paper: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #5a6570;
-    --brand-navy: #003366;
-    --brand-blue: #0056b3;
-    --border-light: #e2e8f0;
-    --border-medium: #cbd5e1;
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
-    --radius-sm: 4px;
-    --radius-md: 8px;
-}
+        /* ===== MODERN ACADEMIC STYLES ===== */
+        :root {
+            --bg-main: #f4f6f8;
+            --paper: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #5a6570;
+            --brand-navy: #003366;
+            --brand-blue: #0056b3;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
 
-body {
-    font-family: 'Merriweather', 'Times New Roman', serif;
-    background: var(--bg-main);
-    color: var(--text-primary);
-    line-height: 1.6;
-    padding: 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        body {
+            font-family: 'Merriweather', 'Times New Roman', serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 20px auto;
-    padding: 50px 60px;
-    background: var(--paper);
-    box-shadow: var(--shadow-md);
-    border-radius: var(--radius-md);
-    border-top: 5px solid var(--brand-navy);
-}
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 50px 60px;
+            background: var(--paper);
+            box-shadow: var(--shadow-md);
+            border-radius: var(--radius-md);
+            border-top: 5px solid var(--brand-navy);
+        }
 
-/* ===== TYPOGRAPHY ===== */
-h1 {
-    font-family: 'Merriweather', serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--brand-navy);
-    text-align: center;
-    margin-bottom: 0.5rem;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-medium);
-}
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--brand-navy);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-medium);
+        }
 
-.subhead {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    font-weight: 400;
-    text-align: center;
-    margin-bottom: 2.5rem;
-    margin-top: 1rem;
-    letter-spacing: 0.5px;
-}
+        .subhead {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            margin-top: 1rem;
+            letter-spacing: 0.5px;
+        }
 
-.intro-paragraph {
-    font-size: 1.15rem;
-    color: var(--text-primary);
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    padding: 25px 30px;
-    background: #f8fafc;
-    border-left: 4px solid var(--brand-blue);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    line-height: 1.8;
-}
+        .intro-paragraph {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            padding: 25px 30px;
+            background: #f8fafc;
+            border-left: 4px solid var(--brand-blue);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            line-height: 1.8;
+        }
 
-/* ===== VOLUME HEADERS ===== */
-.volume-header {
-    font-family: 'Inter', sans-serif;
-    background: var(--paper);
-    border-radius: var(--radius-sm);
-    padding: 15px 25px;
-    margin: 30px 0 20px 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--brand-navy);
-    cursor: pointer;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-light);
-    border-left: 4px solid var(--brand-navy);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background-color 0.2s ease;
-}
+        /* ===== VOLUME HEADERS ===== */
+        .volume-header {
+            font-family: 'Inter', sans-serif;
+            background: var(--paper);
+            border-radius: var(--radius-sm);
+            padding: 15px 25px;
+            margin: 30px 0 20px 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--brand-navy);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--brand-navy);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.2s ease;
+        }
 
-.volume-header:hover {
-    background: #f8fafc;
-}
+        .volume-header:hover {
+            background: #f8fafc;
+        }
 
-.volume-header .arrow {
-    font-size: 1.5rem;
-    color: var(--text-secondary);
-    transition: transform 0.3s ease;
-}
+        .volume-header .arrow {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
 
-.volume-header.collapsed {
-    border-left-color: var(--text-secondary);
-    color: var(--text-secondary);
-}
+        .volume-header.collapsed {
+            border-left-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
 
-/* ===== ISSUE GRID ===== */
-.issue-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-bottom: 40px;
-}
+        /* ===== ISSUE GRID ===== */
+        .issue-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
 
-.issue-grid.collapsed {
-    display: none;
-}
+        .issue-grid.collapsed {
+            display: none;
+        }
 
-.issue-card {
-    background: var(--paper);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-light);
-    text-align: center;
-    padding-bottom: 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+        .issue-card {
+            background: var(--paper);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            text-align: center;
+            padding-bottom: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
-.issue-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--border-medium);
-}
+        .issue-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-medium);
+        }
 
-.cover-image {
-    width: 100%;
-    aspect-ratio: 1 / 1.3;
-    background: #e2e8f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--brand-navy);
-    font-weight: 600;
-    font-size: 1.2rem;
-    font-family: 'Inter', sans-serif;
-    border-bottom: 1px solid var(--border-light);
-}
+        .cover-image {
+            width: 100%;
+            aspect-ratio: 1 / 1.3;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-navy);
+            font-weight: 600;
+            font-size: 1.2rem;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 1px solid var(--border-light);
+        }
 
-.issue-number {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--brand-navy);
-    margin: 20px 0 5px 0;
-}
+        .issue-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brand-navy);
+            margin: 20px 0 5px 0;
+        }
 
-.issue-date {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 15px;
-    display: block;
-}
+        .issue-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            display: block;
+        }
 
-.view-pdf-btn {
-    display: inline-block;
-    background: var(--paper);
-    color: var(--brand-blue);
-    text-decoration: none;
-    padding: 8px 20px;
-    border-radius: var(--radius-sm);
-    font-weight: 500;
-    font-size: 0.95rem;
-    border: 1px solid var(--brand-blue);
-    font-family: 'Inter', sans-serif;
-    transition: all 0.2s ease;
-}
+        .view-pdf-btn {
+            display: inline-block;
+            background: var(--paper);
+            color: var(--brand-blue);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid var(--brand-blue);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+        }
 
-.view-pdf-btn:hover {
-    background: var(--brand-blue);
-    color: var(--paper);
-}
+        .view-pdf-btn:hover {
+            background: var(--brand-blue);
+            color: var(--paper);
+        }
 
-/* ===== CONTRIBUTE SECTION ===== */
-.contribute-box {
-    background: #f8fafc;
-    border-radius: var(--radius-md);
-    padding: 40px;
-    margin: 50px 0 20px 0;
-    text-align: center;
-    border: 1px solid var(--border-light);
-}
+        /* ===== CONTRIBUTE SECTION ===== */
+        .contribute-box {
+            background: #f8fafc;
+            border-radius: var(--radius-md);
+            padding: 40px;
+            margin: 50px 0 20px 0;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
 
-.contribute-box h2 {
-    font-size: 1.8rem;
-    color: var(--brand-navy);
-    margin-bottom: 10px;
-    font-family: 'Merriweather', serif;
-}
+        .contribute-box h2 {
+            font-size: 1.8rem;
+            color: var(--brand-navy);
+            margin-bottom: 10px;
+            font-family: 'Merriweather', serif;
+        }
 
-.contribute-email {
-    font-family: 'Inter', monospace;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--brand-blue);
-    background: var(--paper);
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: var(--radius-sm);
-    margin: 20px 0;
-    border: 1px solid var(--border-medium);
-}
+        .contribute-email {
+            font-family: 'Inter', monospace;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--brand-blue);
+            background: var(--paper);
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--radius-sm);
+            margin: 20px 0;
+            border: 1px solid var(--border-medium);
+        }
 
-.deadline {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    color: #b91c1c; /* Subdued academic red for deadlines */
-    background: #fee2e2;
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: var(--radius-sm);
-    margin-top: 10px;
-    font-weight: 500;
-}
+        .deadline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: #b91c1c;
+            /* Subdued academic red for deadlines */
+            background: #fee2e2;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            margin-top: 10px;
+            font-weight: 500;
+        }
 
-/* ===== PDF MODAL ===== */
-.pdf-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.85); /* Slate dark */
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    backdrop-filter: blur(4px);
-}
+        /* ===== PDF MODAL ===== */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            /* Slate dark */
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+        }
 
-.pdf-modal.active {
-    display: flex;
-}
+        .pdf-modal.active {
+            display: flex;
+        }
 
-.pdf-container {
-    width: 85%;
-    height: 85%;
-    background: var(--paper);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    position: relative;
-    box-shadow: var(--shadow-lg);
-}
+        .pdf-container {
+            width: 85%;
+            height: 85%;
+            background: var(--paper);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
 
-.pdf-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-.close-modal {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    color: var(--paper);
-    font-size: 2.5rem;
-    cursor: pointer;
-    z-index: 1001;
-    font-family: 'Inter', sans-serif;
-    line-height: 1;
-    transition: color 0.2s;
-}
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--paper);
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            font-family: 'Inter', sans-serif;
+            line-height: 1;
+            transition: color 0.2s;
+        }
 
-.close-modal:hover {
-    color: var(--border-medium);
-}
+        .close-modal:hover {
+            color: var(--border-medium);
+        }
 
-/* ===== PDF LANGUAGE BUTTONS ===== */
-.pdf-options {
-    margin: 15px 20px 0 20px;
-    padding: 15px;
-    background: #f8fafc;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-light);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
+        /* ===== PDF LANGUAGE BUTTONS ===== */
+        .pdf-options {
+            margin: 15px 20px 0 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
 
-.pdf-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        .pdf-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-.lang-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    width: 100%;
-}
+        .lang-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+        }
 
-.lang-btn {
-    flex: 1;
-    background: var(--paper);
-    color: var(--text-primary);
-    border: 1px solid var(--border-medium);
-    padding: 8px 0;
-    border-radius: var(--radius-sm);
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
+        .lang-btn {
+            flex: 1;
+            background: var(--paper);
+            color: var(--text-primary);
+            border: 1px solid var(--border-medium);
+            padding: 8px 0;
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-.lang-btn:hover {
-    background: var(--bg-main);
-    border-color: var(--text-secondary);
-}
+        .lang-btn:hover {
+            background: var(--bg-main);
+            border-color: var(--text-secondary);
+        }
 
-.lang-btn:active {
-    background: var(--border-light);
-}
+        .lang-btn:active {
+            background: var(--border-light);
+        }
 
-/* ===== FOOTER ===== */
-.footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-light);
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-family: 'Inter', sans-serif;
-}
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+        }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    .issue-grid { grid-template-columns: repeat(2, 1fr); }
-    .container { padding: 40px 30px; }
-    h1 { font-size: 2.5rem; }
-    .contribute-email { font-size: 1.2rem; word-break: break-all; }
-}
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .issue-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-@media (max-width: 600px) {
-    body { padding: 10px; }
-    .container { 
-        padding: 25px 15px; 
-        margin: 0 auto; 
-    }
-    h1 { font-size: 1.8rem; }
-    .volume-header { font-size: 1.1rem; padding: 12px 15px; }
-    .issue-grid { grid-template-columns: 1fr; gap: 20px; }
-    .contribute-email { font-size: 1.1rem; padding: 10px; }
-    .intro-paragraph { font-size: 1rem; padding: 15px; }
-    
-    .close-modal { 
-        top: -35px; 
-        right: 0px; 
-        font-size: 2rem; 
-    }
-    .pdf-container { width: 95%; height: 90%; }
-}
-</style>
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .contribute-email {
+                font-size: 1.2rem;
+                word-break: break-all;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 25px 15px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .volume-header {
+                font-size: 1.1rem;
+                padding: 12px 15px;
+            }
+
+            .issue-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contribute-email {
+                font-size: 1.1rem;
+                padding: 10px;
+            }
+
+            .intro-paragraph {
+                font-size: 1rem;
+                padding: 15px;
+            }
+
+            .close-modal {
+                top: -35px;
+                right: 0px;
+                font-size: 2rem;
+            }
+
+            .pdf-container {
+                width: 95%;
+                height: 90%;
+            }
+        }
+
+        .journal-card {
+            max-width: 820px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08), 0 8px 24px -8px rgba(0, 0, 0, 0.04);
+            padding: 2.8rem 2.5rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        /* decorative top accent */
+        .journal-card::before {
+            content: '';
+            display: block;
+            width: 72px;
+            height: 4px;
+            background: linear-gradient(90deg, #b48c7c, #d9b8a4);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        /* main typography */
+        .journal-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #2b2b38;
+            letter-spacing: 0.01em;
+            word-break: break-word;
+        }
+
+        /* first paragraph: slightly larger, more presence */
+        .journal-content p:first-of-type {
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            font-size: 1.45rem;
+            line-height: 1.5;
+            font-weight: 400;
+            color: #1a1a26;
+            margin-bottom: 1.8rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #ece7e0;
+        }
+
+        /* italic style for certain phrases (optional) but we keep it subtle */
+        .journal-content p:first-of-type::first-letter {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #9f7a68;
+            margin-right: 2px;
+        }
+
+        /* highlight key words (semantic spans) */
+        .highlight {
+            background: linear-gradient(120deg, #f3ede8 0%, #f3ede8 40%, transparent 80%);
+            padding: 0 0.2rem;
+            font-weight: 500;
+            color: #2d2d3f;
+        }
+
+        .journal-content p i {
+            font-style: italic;
+            color: #6b5b4f;
+        }
+
+        .journal-content p strong {
+            font-weight: 600;
+            color: #3d2e26;
+        }
+
+        /* special treatment for the closing line */
+        .journal-content p:last-of-type {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #4e3e34;
+            margin-top: 1.8rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e8e1d8;
+            background: #fbf9f7;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 40px 8px 40px 8px;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        /* subtle separator between paragraphs (extra space) */
+        .journal-content p+p {
+            margin-top: 0.25rem;
+        }
+
+        /* small details: em dash and spacing */
+        .journal-content p em {
+            font-style: italic;
+            color: #7f695b;
+        }
+
+        /* responsive adjustments */
+        @media (max-width: 550px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .journal-card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 24px;
+            }
+
+            .journal-content p {
+                font-size: 1rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .journal-content p:first-of-type {
+                font-size: 1.2rem;
+            }
+
+            .journal-content p:last-of-type {
+                font-size: 1rem;
+                padding: 1rem 0.8rem;
+            }
+
+            .journal-card::before {
+                width: 56px;
+                height: 3px;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .journal-content p:first-of-type::first-letter {
+                font-size: 1.8rem;
+            }
+
+            .journal-card {
+                padding: 1.2rem 0.8rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
         <h1>IMSI EXCHANGE</h1>
         <div class="subhead">The Voice of Our Scientific Community · Archive</div>
         <div class="intro-paragraph">
-    Dear scholars, seekers, and scribes of the scientific arts — within these digital scrolls lie the chronicles of our institute's intellectual journey. Here you shall find the collected volumes of the IMSI Exchange, a record of discoveries, debates, and deliberations from our community of teachers, students, and keepers of knowledge. May these pages inspire new questions and preserve the wisdom we share.
-</div>
+            <div class="journal-card">
+                <div class="journal-content">
+                    <p>
+                        IMSIExchange is more than just a journal. It is a small window into the soul of an institute, a
+                        crossroads where the perspectives of those who make it thrive meet those of outsiders who are
+                        drawn to its story, its ideas, and its discoveries.
+                    </p>
+                    <p>
+                        Born within the institute community, it was designed as a space where every member — student,
+                        faculty, researcher, staff — can find a platform to raise their voice. But it does not stop at
+                        the institute's borders.
+                    </p>
+                    <p>
+                        It is also an open invitation to every curious mind, to science enthusiasts, and to those
+                        seeking inspiration or connection. Knowledge here is not confined within walls ; it is offered,
+                        shared, and brought to life.
+                    </p>
+                    <p>
+                        This journal carries a promise : to give a chance to every voice, whether it comes from within
+                        or resonates from beyond. Because science, engineering, and reflection know no boundaries, and
+                        the best ideas often emerge where paths intersect.
+                    </p>
+                    <p>
+                        Welcome to this space of exchange. Explore, share, contribute. And remember : IMSIExchange is
+                        your journal, whether you are from here or from elsewhere.
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- VOLUME 1 -->
         <div class="volume-header" onclick="toggleVolume('volume1')">
-            <span>📘 VOLUME 1 · 2025-2026</span>
+            <span>📘 VOLUME 1 · 2026</span>
             <span class="arrow" id="arrow-volume1">▼</span>
         </div>
         <div class="issue-grid" id="volume1">
             <!-- Issue 1 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol1-issue1.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);" 
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #004F98 0%, #002a5e 100%)'; this.innerHTML='ISSUE #1'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol1-issue1.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #004F98 0%, #002a5e 100%)'; this.innerHTML='ISSUE #1'; this.style.color='white';">
                     <!-- Cover image will appear here if exists -->
                 </div>
                 <div class="issue-number">Issue #1</div>
@@ -420,8 +629,9 @@ h1 {
             </div>
             <!-- Issue 2 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol1-issue2.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #1a5f9e 0%, #0a3a6b 100%)'; this.innerHTML='ISSUE #2'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol1-issue2.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #1a5f9e 0%, #0a3a6b 100%)'; this.innerHTML='ISSUE #2'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #2</div>
                 <div class="issue-date">March - April 2026</div><br>
@@ -435,8 +645,9 @@ h1 {
             </div>
             <!-- Issue 3 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol1-issue3.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #2f6fb0 0%, #154b7a 100%)'; this.innerHTML='ISSUE #3'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol1-issue3.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #2f6fb0 0%, #154b7a 100%)'; this.innerHTML='ISSUE #3'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #3</div>
                 <div class="issue-date">May - June 2026</div><br>
@@ -450,8 +661,9 @@ h1 {
             </div>
             <!-- Issue 4 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol1-issue4.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #3f80c2 0%, #1f5c91 100%)'; this.innerHTML='ISSUE #4'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol1-issue4.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #3f80c2 0%, #1f5c91 100%)'; this.innerHTML='ISSUE #4'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #4</div>
                 <div class="issue-date">July - August 2026</div><br>
@@ -465,8 +677,9 @@ h1 {
             </div>
             <!-- Issue 5 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol1-issue5.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #4f91d4 0%, #2a6da8 100%)'; this.innerHTML='ISSUE #5'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol1-issue5.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #4f91d4 0%, #2a6da8 100%)'; this.innerHTML='ISSUE #5'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #5</div>
                 <div class="issue-date">September - October 2026</div><br>
@@ -480,8 +693,9 @@ h1 {
             </div>
             <!-- Issue 6 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol1-issue6.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #5fa2e6 0%, #357ebf 100%)'; this.innerHTML='ISSUE #6'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol1-issue6.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #5fa2e6 0%, #357ebf 100%)'; this.innerHTML='ISSUE #6'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #6</div>
                 <div class="issue-date">November - December 2026</div><br>
@@ -494,17 +708,18 @@ h1 {
                 </div>
             </div>
         </div>
-        
+
         <!-- VOLUME 2 -->
         <div class="volume-header collapsed" onclick="toggleVolume('volume2')">
-            <span>📗 VOLUME 2 · 2026-2027</span>
+            <span>📗 VOLUME 2 · 2027</span>
             <span class="arrow" id="arrow-volume2">▼</span>
         </div>
         <div class="issue-grid collapsed" id="volume2">
             <!-- Issue 1 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol2-issue1.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #3a7b4a 0%, #1f4d2a 100%)'; this.innerHTML='ISSUE #1'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol2-issue1.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #3a7b4a 0%, #1f4d2a 100%)'; this.innerHTML='ISSUE #1'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #1</div>
                 <div class="issue-date">January - February 2027</div><br>
@@ -512,26 +727,29 @@ h1 {
             </div>
             <!-- Issue 2 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol2-issue2.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #4b8c5a 0%, #2e6139 100%)'; this.innerHTML='ISSUE #2'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol2-issue2.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #4b8c5a 0%, #2e6139 100%)'; this.innerHTML='ISSUE #2'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #2</div>
-                <div class="issue-date"> March - April  2027</div><br>
+                <div class="issue-date"> March - April 2027</div><br>
                 <button class="view-pdf-btn" onclick="openPDF('pdfs/vol2-issue2.pdf')">📄 View PDF</button>
             </div>
             <!-- Issue 3 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol2-issue3.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #5b9d6a 0%, #3d7449 100%)'; this.innerHTML='ISSUE #3'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol2-issue3.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #5b9d6a 0%, #3d7449 100%)'; this.innerHTML='ISSUE #3'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #3</div>
-                <div class="issue-date"> May  - June 2027</div><br>
+                <div class="issue-date"> May - June 2027</div><br>
                 <button class="view-pdf-btn" onclick="openPDF('pdfs/vol2-issue3.pdf')">📄 View PDF</button>
             </div>
             <!-- Issue 4 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol2-issue4.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #6bae7a 0%, #4c8e59 100%)'; this.innerHTML='ISSUE #4'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol2-issue4.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #6bae7a 0%, #4c8e59 100%)'; this.innerHTML='ISSUE #4'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #4</div>
                 <div class="issue-date">July - August 2027</div><br>
@@ -539,8 +757,9 @@ h1 {
             </div>
             <!-- Issue 5 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol2-issue5.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #7bbf8a 0%, #5ca869 100%)'; this.innerHTML='ISSUE #5'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol2-issue5.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #7bbf8a 0%, #5ca869 100%)'; this.innerHTML='ISSUE #5'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #5</div>
                 <div class="issue-date">September - October 2027</div><br>
@@ -548,25 +767,27 @@ h1 {
             </div>
             <!-- Issue 6 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol2-issue6.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #8bcf9a 0%, #6cb879 100%)'; this.innerHTML='ISSUE #6'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol2-issue6.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #8bcf9a 0%, #6cb879 100%)'; this.innerHTML='ISSUE #6'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #6</div>
                 <div class="issue-date">November - December 2027</div><br>
                 <button class="view-pdf-btn" onclick="openPDF('pdfs/vol2-issue6.pdf')">📄 View PDF</button>
             </div>
         </div>
-        
+
         <!-- VOLUME 3 -->
         <div class="volume-header collapsed" onclick="toggleVolume('volume3')">
-            <span>📙 VOLUME 3 · 2027-2028</span>
+            <span>📙 VOLUME 3 · 2028</span>
             <span class="arrow" id="arrow-volume3">▼</span>
         </div>
         <div class="issue-grid collapsed" id="volume3">
             <!-- Issue 1 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol3-issue1.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #a54f2c 0%, #73381e 100%)'; this.innerHTML='ISSUE #1'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol3-issue1.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #a54f2c 0%, #73381e 100%)'; this.innerHTML='ISSUE #1'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #1</div>
                 <div class="issue-date">January - February 2028</div><br>
@@ -574,8 +795,9 @@ h1 {
             </div>
             <!-- Issue 2 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol3-issue2.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #b55f3c 0%, #84462b 100%)'; this.innerHTML='ISSUE #2'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol3-issue2.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #b55f3c 0%, #84462b 100%)'; this.innerHTML='ISSUE #2'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #2</div>
                 <div class="issue-date">March - April 2028</div><br>
@@ -583,8 +805,9 @@ h1 {
             </div>
             <!-- Issue 3 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol3-issue3.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #c66f4c 0%, #9a5536 100%)'; this.innerHTML='ISSUE #3'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol3-issue3.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #c66f4c 0%, #9a5536 100%)'; this.innerHTML='ISSUE #3'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #3</div>
                 <div class="issue-date">May - June 2028</div><br>
@@ -592,8 +815,9 @@ h1 {
             </div>
             <!-- Issue 4 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol3-issue4.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #d77f5c 0%, #af6542 100%)'; this.innerHTML='ISSUE #4'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol3-issue4.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #d77f5c 0%, #af6542 100%)'; this.innerHTML='ISSUE #4'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #4</div>
                 <div class="issue-date">July - August 2028</div><br>
@@ -601,8 +825,9 @@ h1 {
             </div>
             <!-- Issue 5 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol3-issue5.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #e88f6c 0%, #c4754e 100%)'; this.innerHTML='ISSUE #5'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol3-issue5.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #e88f6c 0%, #c4754e 100%)'; this.innerHTML='ISSUE #5'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #5</div>
                 <div class="issue-date">September - October 2028</div><br>
@@ -610,29 +835,32 @@ h1 {
             </div>
             <!-- Issue 6 -->
             <div class="issue-card">
-                <div class="cover-image" style="background-image: url('covers/vol3-issue6.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
-                     onerror="this.style.backgroundImage='linear-gradient(145deg, #f89f7c 0%, #d4855c 100%)'; this.innerHTML='ISSUE #6'; this.style.color='white';">
+                <div class="cover-image"
+                    style="background-image: url('covers/vol3-issue6.jpg'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"
+                    onerror="this.style.backgroundImage='linear-gradient(145deg, #f89f7c 0%, #d4855c 100%)'; this.innerHTML='ISSUE #6'; this.style.color='white';">
                 </div>
                 <div class="issue-number">Issue #6</div>
                 <div class="issue-date">November - December 2028</div><br>
                 <button class="view-pdf-btn" onclick="openPDF('pdfs/vol3-issue6.pdf')">📄 View PDF</button>
             </div>
         </div>
-        
+
         <!-- CONTRIBUTE SECTION -->
         <div class="contribute-box">
             <h2>✉️ CONTRIBUTE TO THE EXCHANGE</h2>
-            <p style="font-size: 1.2rem; color: #2c3e50; margin-bottom: 20px;">Send your articles, research highlights, club news, photos & ideas</p>
+            <p style="font-size: 1.2rem; color: #2c3e50; margin-bottom: 20px;">Send your articles, research highlights,
+                club news, photos & ideas</p>
             <div class="contribute-email">📧 imsiexchange@gmail.com</div>
-            <p style="margin-top: 30px; color: #546e7a;">All students, teachers, staff, and clubs are welcome to contribute</p>
+            <p style="margin-top: 30px; color: #546e7a;">All students, teachers, staff, and clubs are welcome to
+                contribute</p>
         </div>
-        
+
         <!-- FOOTER -->
         <div class="footer">
             © IMSI Exchange · Updated March 2026 · All issues archived in PDF format · Editor : A. MOULAI-KHATIR
         </div>
     </div>
-    
+
     <!-- PDF MODAL (for iframe viewing) -->
     <div class="pdf-modal" id="pdfModal" onclick="closePDF(event)">
         <div class="close-modal" onclick="closePDF(event)">×</div>
@@ -642,78 +870,79 @@ h1 {
     </div>
 
     <script>
-    // ===== VOLUME TOGGLE FUNCTIONALITY =====
-    function toggleVolume(volumeId) {
-        const volumes = ['volume1', 'volume2', 'volume3'];
-        const isCollapsed = document.getElementById(volumeId).classList.contains('collapsed');
-        
-        // Collapse all volumes
-        volumes.forEach(id => {
-            const vol = document.getElementById(id);
-            const header = document.querySelector(`[onclick="toggleVolume('${id}')"]`);
-            const arrow = document.getElementById(`arrow-${id}`);
-            
-            if (vol) vol.classList.add('collapsed');
-            if (header) header.classList.add('collapsed');
-            if (arrow) arrow.style.transform = 'rotate(-90deg)';
-        });
-        
-        // Expand clicked volume if it was collapsed
-        if (isCollapsed) {
-            const clickedVolume = document.getElementById(volumeId);
-            const clickedHeader = document.querySelector(`[onclick="toggleVolume('${volumeId}')"]`);
-            const clickedArrow = document.getElementById(`arrow-${volumeId}`);
-            
-            clickedVolume.classList.remove('collapsed');
-            clickedHeader.classList.remove('collapsed');
-            clickedArrow.style.transform = 'rotate(0deg)';
-            clickedHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ===== VOLUME TOGGLE FUNCTIONALITY =====
+        function toggleVolume(volumeId) {
+            const volumes = ['volume1', 'volume2', 'volume3'];
+            const isCollapsed = document.getElementById(volumeId).classList.contains('collapsed');
+
+            // Collapse all volumes
+            volumes.forEach(id => {
+                const vol = document.getElementById(id);
+                const header = document.querySelector(`[onclick="toggleVolume('${id}')"]`);
+                const arrow = document.getElementById(`arrow-${id}`);
+
+                if (vol) vol.classList.add('collapsed');
+                if (header) header.classList.add('collapsed');
+                if (arrow) arrow.style.transform = 'rotate(-90deg)';
+            });
+
+            // Expand clicked volume if it was collapsed
+            if (isCollapsed) {
+                const clickedVolume = document.getElementById(volumeId);
+                const clickedHeader = document.querySelector(`[onclick="toggleVolume('${volumeId}')"]`);
+                const clickedArrow = document.getElementById(`arrow-${volumeId}`);
+
+                clickedVolume.classList.remove('collapsed');
+                clickedHeader.classList.remove('collapsed');
+                clickedArrow.style.transform = 'rotate(0deg)';
+                clickedHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
-    }
-    
-    // ===== PDF VIEWER FUNCTION =====
-    const modal = document.getElementById('pdfModal');
-    const iframe = document.getElementById('pdfIframe');
-    
-    function openPDF(pdfPath) {
-        iframe.src = pdfPath;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closePDF(event) {
-        if (event.target.classList.contains('pdf-modal') || event.target.classList.contains('close-modal')) {
-            modal.classList.remove('active');
-            iframe.src = 'about:blank';
-            document.body.style.overflow = '';
+
+        // ===== PDF VIEWER FUNCTION =====
+        const modal = document.getElementById('pdfModal');
+        const iframe = document.getElementById('pdfIframe');
+
+        function openPDF(pdfPath) {
+            iframe.src = pdfPath;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-    }
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            modal.classList.remove('active');
-            iframe.src = 'about:blank';
-            document.body.style.overflow = '';
+
+        function closePDF(event) {
+            if (event.target.classList.contains('pdf-modal') || event.target.classList.contains('close-modal')) {
+                modal.classList.remove('active');
+                iframe.src = 'about:blank';
+                document.body.style.overflow = '';
+            }
         }
-    });
-    
-    // Initialize: Volume 1 expanded, others collapsed
-    window.onload = () => {
-        const volumes = ['volume1', 'volume2', 'volume3'];
-        volumes.forEach((id, index) => {
-            const vol = document.getElementById(id);
-            const arrow = document.getElementById(`arrow-${id}`);
-            
-            if (index === 0) {
-                vol.classList.remove('collapsed');
-                arrow.style.transform = 'rotate(0deg)';
-            } else {
-                vol.classList.add('collapsed');
-                arrow.style.transform = 'rotate(-90deg)';
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                iframe.src = 'about:blank';
+                document.body.style.overflow = '';
             }
         });
-    };
-</script>
+
+        // Initialize: Volume 1 expanded, others collapsed
+        window.onload = () => {
+            const volumes = ['volume1', 'volume2', 'volume3'];
+            volumes.forEach((id, index) => {
+                const vol = document.getElementById(id);
+                const arrow = document.getElementById(`arrow-${id}`);
+
+                if (index === 0) {
+                    vol.classList.remove('collapsed');
+                    arrow.style.transform = 'rotate(0deg)';
+                } else {
+                    vol.classList.add('collapsed');
+                    arrow.style.transform = 'rotate(-90deg)';
+                }
+            });
+        };
+    </script>
 </body>
+
 </html>
